@@ -68,9 +68,6 @@ fn main() {
                        .as_bytes()[0];
     let mut data = read_data(delimiter);
     let mut table = Table::from_csv(&mut data);
-    // let delimiter = vec![cli.delimiter];
-    // let delimiter: &str = std::str::from_utf8(&delimiter)
-        // .expect("None acceptable delimiter");
 
     if let Some(all) = cli.all.as_deref() {
         for row in table.row_iter_mut() {
