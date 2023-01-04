@@ -80,13 +80,13 @@ fn main() {
     if let Some(columns) = cli.column.as_deref() {
         for column in columns {
             let mut column = column.split(cli.delimiter);
-            let id = column
+            let index = column
                      .next()
                      .expect("The first value has to be the number of the column that has to be changed")
                      .parse::<usize>()
                      .expect("The first value has to be the number of the column that has to be changed");
             let spec = column.next().expect("There was no second value in a -c");
-            for cell in table.column_iter_mut(id) {
+            for cell in table.column_iter_mut(index) {
                 *cell = cell.clone().style_spec(spec);
             }
         }
@@ -95,13 +95,13 @@ fn main() {
     if let Some(rows) = cli.row.as_deref() {
         for row in rows {
             let mut row = row.split(cli.delimiter);
-            let id = row
+            let index = row
                      .next()
                      .expect("The first value has to be the number of the row that has to be changed")
                      .parse::<usize>()
                      .expect("The first value has to be the number of the row that has to be changed");
             let spec = row.next().expect("There was no second value in a -r");
-            let cells = table.get_mut_row(id)
+            let cells = table.get_mut_row(index)
                              .expect("Index out of bound in a -r");
             for cell in cells.iter_mut() {
                 *cell = cell.clone().style_spec(spec);
