@@ -14,7 +14,6 @@ fn read_data() -> Reader<Stdin> {
         .from_reader(io::stdin())
 }
 
-
 fn main() {
     let mut data = read_data();
     let table = Table::from_csv(&mut data);
